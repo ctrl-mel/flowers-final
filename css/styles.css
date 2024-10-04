@@ -1,0 +1,10 @@
+.DOMButton:hover {
+    color: black !important;
+}
+.DOMButton.disabledButton {
+    color: grey !important;
+    cursor: default !important;
+}
+.DOMButton.disabledButton:hover {
+    color: grey !important;
+}

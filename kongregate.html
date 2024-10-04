@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flower Tower Defense</title>
+    <style>
+        .DOMButton:hover {
+            color: black !important;
+        }
+        .DOMButton.disabledButton {
+            color: grey !important;
+            cursor: default !important;
+        }
+        .DOMButton.disabledButton:hover {
+            color: grey !important;
+        }
+    </style>
+</head>
+<body>
+    <script src="js/lib/crafty.js"></script>
+    <script src="js/lib/statemachine.js?v=2"></script>
+    <script src="js/lib/path.js?v=3"></script>
+
+    <script src='https://cdn1.kongregate.com/javascripts/kongregate_api.js'></script>
+
+    <script src="js/game.js?v=3"></script>
+    <script src="js/all.js?v=3"></script>
+
+    <script>
+        window.addEventListener('load', Game.start);
+        window.addEventListener('load', loadStatistics);
+
+        function loadStatistics() {
+            // Load the API
+            var kongregate;
+            kongregateAPI.loadAPI(onComplete);
+
+            // Callback function
+            function onComplete(){
+                // Set the global kongregate API object
+                kongregate = kongregateAPI.getAPI();
+                Crafty.bind('WaveFinished', function(wave) {
+                    kongregate.stats.submit("Wave" + Game.difficulty, wave);
+                });
+                Crafty.bind('EnemyKilled', function(enemy) {
+                    kongregate.stats.submit("EnemyKilled", 1);
+                    if (enemy.has('SilverDragon')) {
+                        kongregate.stats.submit("SilverDragonKilled", 1);
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>

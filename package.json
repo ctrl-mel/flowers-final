@@ -1,0 +1,12 @@
+{
+  "name": "flower-tower-defense",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "coffeescript": "~2.7.0",
+    "grunt": "~1.5.2",
+    "grunt-contrib-coffee": "^2.1.0",
+    "grunt-contrib-uglify": "^5.2.1",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
